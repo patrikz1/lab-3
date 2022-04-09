@@ -8,7 +8,8 @@ namespace Lab_3
 {
     internal class GameSetup
     {
-
+        //vet ej om denna behövs, tänker att då har man listan ifylld efter man hoppat ur populateBoards men vet ej
+        public List<Board>? boards;
         public GameSetup()
         {
             populateBoards();
@@ -16,25 +17,20 @@ namespace Lab_3
 
         public void populateBoards()
         {
-           //Dictionary<int, Board> boards = new Dictionary<int, Board>();
+            string[] SmallSquares = new string[9] { "NW", "NC", "NE", "CW", "CC", "CE", "SW", "SC", "SE" };
             List<Board> boards = new List<Board>();
-            for (int i = 0; i< 9; i++)
+            for (int i = 0; i < SmallSquares.Length; i++)
             {
-                boards.Add(new ()
+                string? BigSquare = SmallSquares.GetValue(i).ToString();
+                boards.Add( new()
                 {
-                    //BigBoard = i,
-                    NW = "NW", 
-                    NC = "NC",
-                    NE = "NE",
-                    CW = "CW",
-                    CC = "CC",
-                    CE = "CE",
-                    SW = "SW",
-                    SC = "SC",
-                    SE = "SE"
-                });
-            }
+                    BigSquare = BigSquare,
+                    SmallSquares = SmallSquares,
 
+                }) ;
+            }
+           //Connected t kommentaren där uppe
+            this.boards = boards;
         }
     }
 }
