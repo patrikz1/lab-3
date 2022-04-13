@@ -8,14 +8,14 @@ namespace Lab_3
 {
     internal class GameSetup
     {
-        //vet ej om denna behövs, tänker att då har man listan ifylld efter man hoppat ur populateBoards men vet ej
-        public List<Board>? boards;
-        public GameSetup()
+      public string PlayerInput { get; set; }
+        public GameSetup(string PlayerInput)
         {
-            populateBoards();
+            this.PlayerInput = PlayerInput;
+            PopulateBoards();
         }
 
-        public void populateBoards()
+        public void PopulateBoards()
         {
             string[] SmallSquares = new string[9] { "NW", "NC", "NE", "CW", "CC", "CE", "SW", "SC", "SE" };
             List<Board> boards = new List<Board>();
@@ -26,11 +26,19 @@ namespace Lab_3
                 {
                     BigSquare = BigSquare,
                     SmallSquares = SmallSquares,
-
                 }) ;
             }
-           //Connected t kommentaren där uppe
-            this.boards = boards;
+            PopulatePlayers(boards);
+        }
+        public void PopulatePlayers(List<Board> BoardList)
+        {
+
+            var PlayerList = new List<Players>();
+            var PlayerEntry = new Players { Player1 = "O", Player2 = "X"};
+            PlayerList.Add( PlayerEntry );
+
+            new Game(BoardList, PlayerList, PlayerInput);
+
         }
     }
 }

@@ -6,8 +6,9 @@ namespace Lab_3 // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
-            new GameSetup();
+            string PlayerInput = Console.ReadLine();
+            new GameSetup(PlayerInput);
         }
-     
+
     }
 }

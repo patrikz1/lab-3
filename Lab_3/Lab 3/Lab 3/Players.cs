@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Lab_3
 {
-    internal class Board
+    internal class Players
     {
-        public string[]? SmallSquares { get; set; }
-        public string? BigSquare { get; set; }
-        public Board()
+        public string? Player1 { get; set; }
+        public string? Player2 { get; set; }
+        public Players()
         {
+            
         }
-
     }
 }
