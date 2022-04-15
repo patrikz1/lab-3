@@ -23,6 +23,10 @@ namespace Lab_3
             var FindBigBoardIndex = BoardList.FindIndex(x => x.BigSquare.Equals(BigBoardSplit));
             var FindBigBoardItem = BoardList[FindBigBoardIndex];
 
+            var FindSmallSquareIndex = BoardList.FindIndex(x => x.SmallSquares.Contains(SmallBoardSplit));
+            var FindSmallSquareItem = FindBigBoardItem.SmallSquares[FindSmallSquareIndex];
+            
+
             //var FindSmallSquare = .Where(FindBigBoardItem.SmallSquares.Equals(SmallBoardSplit);
 
            
