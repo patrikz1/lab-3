@@ -23,6 +23,9 @@ namespace Lab_3
             var FindBigBoardIndex = BoardList.FindIndex(x => x.BigSquare.Equals(BigBoardSplit));
             var FindBigBoardItem = BoardList[FindBigBoardIndex];
 
+            //måste fixas, för nu kollar jag om de finns någon index där de är lika med inputen, när alla NW t.ex har tagits så måste den säga "finns inga NW kvar"
+            //alternativt kolla om den specifika finns i nya listan som vi skapar (SelectedItems) för på så sätt slipper vi ta bort från gamla listan å kmr alltid finnas NW kvar
+            //men då kollar vi om de finns en NW.NW i SelectedItmes å om de inte finns lägger vi till den där.
             var FindSmallSquareIndex = BoardList.FindIndex(x => x.SmallSquares.Contains(SmallBoardSplit));
             var FindSmallSquareItem = FindBigBoardItem.SmallSquares[FindSmallSquareIndex];
             
