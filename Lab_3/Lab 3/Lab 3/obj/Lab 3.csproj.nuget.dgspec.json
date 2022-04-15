@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\patri\\Documents\\GitHub\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj": {}
+    "C:\\Users\\Sebene\\source\\repos\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\patri\\Documents\\GitHub\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj": {
+    "C:\\Users\\Sebene\\source\\repos\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\patri\\Documents\\GitHub\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj",
+        "projectUniqueName": "C:\\Users\\Sebene\\source\\repos\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj",
         "projectName": "Lab 3",
-        "projectPath": "C:\\Users\\patri\\Documents\\GitHub\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj",
-        "packagesPath": "C:\\Users\\patri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\patri\\Documents\\GitHub\\lab-3\\Lab_3\\Lab 3\\Lab 3\\obj\\",
+        "projectPath": "C:\\Users\\Sebene\\source\\repos\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj",
+        "packagesPath": "C:\\Users\\Sebene\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sebene\\source\\repos\\lab-3\\Lab_3\\Lab 3\\Lab 3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\patri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sebene\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
