@@ -8,7 +8,6 @@ namespace Lab_3
 {
     internal class Game
     {
-        public Tuple<List<Board>, List<Players>> SelectedItems { get; set; }
         public Game(List<Board> BoardList, List<Players> PlayerList, string PlayerInput)
         {
             MakeMoves(PlayerList, BoardList, PlayerInput);
