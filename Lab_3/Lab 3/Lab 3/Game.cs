@@ -8,7 +8,7 @@ namespace Lab_3
 {
     internal class Game
     {
-
+        public Tuple<List<Board>, List<Players>> SelectedItems { get; set; }
         public Game(List<Board> BoardList, List<Players> PlayerList, string PlayerInput)
         {
             MakeMoves(PlayerList, BoardList, PlayerInput);
@@ -28,15 +28,16 @@ namespace Lab_3
             //men då kollar vi om de finns en NW.NW i SelectedItmes å om de inte finns lägger vi till den där.
             var FindSmallSquareIndex = BoardList.FindIndex(x => x.SmallSquares.Contains(SmallBoardSplit));
             var FindSmallSquareItem = FindBigBoardItem.SmallSquares[FindSmallSquareIndex];
-            
 
-            //var FindSmallSquare = .Where(FindBigBoardItem.SmallSquares.Equals(SmallBoardSplit);
 
-           
+
+            //List<Board> SelectedItems = new List<Board>();
+            //var SelectedItemEntry = new Board {BigSquare = FindBigBoardItem.ToString(), SmallSquares = FindSmallSquareItem.ToArray()};
+
             //Then place in another list (SelectedSquares) and remove from BoardList
 
-            
-            
+
+
             //längst ner player change och reiterate denna metod i guess (om jag inte måste tbx t main, men då måste man göra så att gamestup inte körs igen)
         }
     }

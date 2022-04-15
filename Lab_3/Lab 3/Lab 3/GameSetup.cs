@@ -33,9 +33,17 @@ namespace Lab_3
         public void PopulatePlayers(List<Board> BoardList)
         {
 
+            string[] Players = new string[2] { "O", "X" };
             var PlayerList = new List<Players>();
-            var PlayerEntry = new Players { Player1 = "O", Player2 = "X"};
-            PlayerList.Add( PlayerEntry );
+
+            for (int i = 0; i < Players.Length; i++)
+            {
+                string? PlayersIteration = Players.GetValue(i).ToString();
+                PlayerList.Add(new()
+                {
+                    Player = PlayersIteration,
+                });
+            }
 
             new Game(BoardList, PlayerList, PlayerInput);
 
