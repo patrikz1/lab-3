@@ -8,6 +8,7 @@ namespace Lab_3
 {
     internal class Game
     {
+        public List<BoardWithPlayer> SelectedItemsByPlayer { get; set; }
         public Game(List<Board> BoardList, List<Players> PlayerList, string PlayerInput)
         {
             MakeMoves(PlayerList, BoardList, PlayerInput);
@@ -16,22 +17,32 @@ namespace Lab_3
         {
             var PlayerInputSplit = PlayerInput.Split('.');
 
-            var BigBoardSplit = PlayerInputSplit[0];
-            var SmallBoardSplit = PlayerInputSplit[1];
+            var BigBoardSplit = PlayerInputSplit[0].ToUpper();
+            var SmallSquareSplit = PlayerInputSplit[1].ToUpper();
 
             var FindBigBoardIndex = BoardList.FindIndex(x => x.BigSquare.Equals(BigBoardSplit));
             var FindBigBoardItem = BoardList[FindBigBoardIndex];
+            var FindSmallSquareIndex = Array.FindIndex(FindBigBoardItem.SmallSquares, row => row.Contains(SmallSquareSplit));
 
-            //måste fixas, för nu kollar jag om de finns någon index där de är lika med inputen, när alla NW t.ex har tagits så måste den säga "finns inga NW kvar"
-            //alternativt kolla om den specifika finns i nya listan som vi skapar (SelectedItems) för på så sätt slipper vi ta bort från gamla listan å kmr alltid finnas NW kvar
-            //men då kollar vi om de finns en NW.NW i SelectedItmes å om de inte finns lägger vi till den där.
-            var FindSmallSquareIndex = BoardList.FindIndex(x => x.SmallSquares.Contains(SmallBoardSplit));
-            var FindSmallSquareItem = FindBigBoardItem.SmallSquares[FindSmallSquareIndex];
+            var SmallSquare = FindBigBoardItem.SmallSquares[FindSmallSquareIndex];
+            var BigBoard = FindBigBoardItem.BigSquare;
 
+            var SelectedItemsByPlayer = new List<BoardWithPlayer>();
+            SelectedItemsByPlayer.Add(new()
+            {
+                BigBoard = BigBoard,
+                SmallSquare = SmallSquare,
+                Player = CurrentPlayer(PlayerList)
+            });
 
-
-
-            //längst ner player change och reiterate denna metod i guess (om jag inte måste tbx t main, men då måste man göra så att gamestup inte körs igen)
+            this.SelectedItemsByPlayer = SelectedItemsByPlayer;
+            // sen kanske vi måste serialize'a denna lista så den hålls kvar å inte "tappar" sina förra val. utan har en xml fil med alla föredetta val.
+            
+        }
+        public string CurrentPlayer(List<Players> PlayerList)
+        {
+            // Return player name based on Last entry player in SelectedItemsByPlayers list (take the other one, so its 1-2-1-2).
+            return "X";
         }
     }
 }
