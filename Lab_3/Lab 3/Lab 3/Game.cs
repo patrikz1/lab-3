@@ -30,12 +30,6 @@ namespace Lab_3
 
 
 
-            //List<Board> SelectedItems = new List<Board>();
-            //var SelectedItemEntry = new Board {BigSquare = FindBigBoardItem.ToString(), SmallSquares = FindSmallSquareItem.ToArray()};
-
-            //Then place in another list (SelectedSquares) and remove from BoardList
-
-
 
             //längst ner player change och reiterate denna metod i guess (om jag inte måste tbx t main, men då måste man göra så att gamestup inte körs igen)
         }
