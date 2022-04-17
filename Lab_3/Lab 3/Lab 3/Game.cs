@@ -13,6 +13,7 @@ namespace Lab_3
         {
             MakeMoves(PlayerList, BoardList, PlayerInput);
         }
+ 
         public void MakeMoves(List<Players> PlayerList, List<Board> BoardList, string PlayerInput)
         {
             var PlayerInputSplit = PlayerInput.Split('.');
@@ -37,8 +38,9 @@ namespace Lab_3
 
             this.SelectedItemsByPlayer = SelectedItemsByPlayer;
             // sen kanske vi måste serialize'a denna lista så den hålls kvar å inte "tappar" sina förra val. utan har en xml fil med alla föredetta val.
-            
+
         }
+
         public string CurrentPlayer(List<Players> PlayerList)
         {
             // Return player name based on Last entry player in SelectedItemsByPlayers list (take the other one, so its 1-2-1-2).

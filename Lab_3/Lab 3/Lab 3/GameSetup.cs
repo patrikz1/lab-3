@@ -8,14 +8,15 @@ namespace Lab_3
 {
     internal class GameSetup
     {
-      public string PlayerInput { get; set; }
-        public GameSetup(string PlayerInput)
+        public GameSetup()
         {
-            this.PlayerInput = PlayerInput;
-            PopulateBoards();
-        }
 
-        public void PopulateBoards()
+        }
+        //Denna hade förut båda dessa metoder som void, string playerinput som inparameter för gamesetup och sen i konstruktorn körde vi PopulateBoards()
+        //som i sin tur avslutades med att köra PopulatePlayers och skicka med boards listan som inparameter för PopulatePlayers()
+        //I populate players avslutade vi med att göra en ny Game och skickade med boards som den fått från PopulatePlayers, Playerinput från konstruktorn och
+        //playerList som den själv genererat
+        public List<Board> PopulateBoards()
         {
             string[] SmallSquares = new string[9] { "NW", "NC", "NE", "CW", "CC", "CE", "SW", "SC", "SE" };
             List<Board> boards = new List<Board>();
@@ -28,9 +29,9 @@ namespace Lab_3
                     SmallSquares = SmallSquares,
                 }) ;
             }
-            PopulatePlayers(boards);
+            return boards;
         }
-        public void PopulatePlayers(List<Board> BoardList)
+        public List<Players> PopulatePlayers()
         {
 
             string[] Players = new string[2] { "O", "X" };
@@ -44,9 +45,7 @@ namespace Lab_3
                     Player = PlayersIteration,
                 });
             }
-
-            new Game(BoardList, PlayerList, PlayerInput);
-
+            return PlayerList;
         }
     }
 }
