@@ -32,15 +32,16 @@ namespace Lab_3
 
                     var SmallSquare = FindBigBoardItem.SmallSquares[FindSmallSquareIndex];
                     var BigBoard = FindBigBoardItem.BigSquare;
-                    if (IsValid())
-                    {
-                        SelectedItemsByPlayer.Add(new()
+
+                    SelectedItemsByPlayer.Add(new()
                         {
                             BigBoard = BigBoard,
                             SmallSquare = SmallSquare,
                             Player = CurrentPlayer(PlayerList, SelectedItemsByPlayer)
                         }) ;
-                    }
+
+                    CheckNotValid(SelectedItemsByPlayer);
+               
                     var result = new Result().CheckWinSmallBoards(SelectedItemsByPlayer);
                     if(result == true)
                     {
@@ -51,10 +52,23 @@ namespace Lab_3
             }
             return SelectedItemsByPlayer;
         }
-        public bool IsValid()
+        public bool CheckNotValid(List<BoardWithPlayer> selectedItemsByPlayer)
         {
-            //Return true if move not already in SelectedItemsByPlayer
-            return true;
+            foreach (var item in selectedItemsByPlayer)
+            {
+                BoardWithPlayer CurrentItem = selectedItemsByPlayer.Last();
+                if(item != CurrentItem)
+                {
+                    bool containsBigBoard = item.BigBoard.Equals(CurrentItem.BigBoard);
+                    bool containsSmallSquare = item.SmallSquare.Equals(CurrentItem.SmallSquare);
+                    if (containsBigBoard && containsSmallSquare) // || (or) board already complete (when i have done the result)
+                    {
+                        selectedItemsByPlayer.Remove(CurrentItem);
+                        return true;
+                    }
+                }
+            }
+            return false;     
         }
 
         public string CurrentPlayer(List<Players> PlayerList, List<BoardWithPlayer> SelectedItems)
