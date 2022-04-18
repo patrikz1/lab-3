@@ -10,7 +10,6 @@ namespace Lab_3
     {
         public Game(List<Board> BoardList, List<Players> PlayerList, string PlayerInput)
         {
-            //Alternativt göra MakeMoves Void och göra sista linjen på den new result(SelectedItemsByPlayer)
             MakeMoves(PlayerList, BoardList,PlayerInput);
         }
 
@@ -39,8 +38,8 @@ namespace Lab_3
                         {
                             BigBoard = BigBoard,
                             SmallSquare = SmallSquare,
-                            Player = CurrentPlayer(PlayerList)
-                        });
+                            Player = CurrentPlayer(PlayerList, SelectedItemsByPlayer)
+                        }) ;
                     }
                     var result = new Result().CheckWinSmallBoards(SelectedItemsByPlayer);
                     if(result == true)
@@ -58,10 +57,16 @@ namespace Lab_3
             return true;
         }
 
-        public string CurrentPlayer(List<Players> PlayerList)
+        public string CurrentPlayer(List<Players> PlayerList, List<BoardWithPlayer> SelectedItems)
         {
-            //Varannan player, X-O-X-O etc.
-            return "X";
+            if (SelectedItems.Count % 2 == 0 || SelectedItems.Count == 0)
+            {
+                return PlayerList[0].Player.ToString();
+            }
+            else
+            {
+                return PlayerList[1].Player.ToString();
+            }
         }
     }
 }

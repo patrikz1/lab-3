@@ -34,7 +34,7 @@ namespace Lab_3
         public List<Players> PopulatePlayers()
         {
 
-            string[] Players = new string[2] { "O", "X" };
+            string[] Players = new string[2] { "X", "O" };
             var PlayerList = new List<Players>();
 
             for (int i = 0; i < Players.Length; i++)

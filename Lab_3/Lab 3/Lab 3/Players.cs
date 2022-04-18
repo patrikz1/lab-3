@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_3
 {
-    internal class Players
+    public class Players
     {
         public string? Player { get; set; }
         public Players()
