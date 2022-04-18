@@ -11,7 +11,7 @@ namespace Lab_3
         public Game(List<Board> BoardList, List<Players> PlayerList, string PlayerInput)
         {
             //Alternativt göra MakeMoves Void och göra sista linjen på den new result(SelectedItemsByPlayer)
-            new Result(MakeMoves(PlayerList, BoardList,PlayerInput));
+            MakeMoves(PlayerList, BoardList,PlayerInput);
         }
 
         public List<BoardWithPlayer> MakeMoves(List<Players> PlayerList, List<Board> BoardList, string PlayerInput)
@@ -29,20 +29,32 @@ namespace Lab_3
 
                     var FindBigBoardIndex = BoardList.FindIndex(x => x.BigSquare.Equals(BigBoardSplit));
                     var FindBigBoardItem = BoardList[FindBigBoardIndex];
-                    var FindSmallSquareIndex = Array.FindIndex(FindBigBoardItem.SmallSquares, row => row.Contains(SmallSquareSplit));
+                    var FindSmallSquareIndex = Array.FindIndex(FindBigBoardItem.SmallSquares, x => x.Contains(SmallSquareSplit));
 
                     var SmallSquare = FindBigBoardItem.SmallSquares[FindSmallSquareIndex];
                     var BigBoard = FindBigBoardItem.BigSquare;
-
-                    SelectedItemsByPlayer.Add(new()
+                    if (IsValid())
                     {
-                        BigBoard = BigBoard,
-                        SmallSquare = SmallSquare,
-                        Player = CurrentPlayer(PlayerList)
-                    });
+                        SelectedItemsByPlayer.Add(new()
+                        {
+                            BigBoard = BigBoard,
+                            SmallSquare = SmallSquare,
+                            Player = CurrentPlayer(PlayerList)
+                        });
+                    }
+                    var result = new Result().CheckWinSmallBoards(SelectedItemsByPlayer);
+                    if(result == true)
+                    {
+                        // add to a list of boards that has been won, then if you try to add something that is in this list again = not valid 
+                    }
+                    
                 }
             }
             return SelectedItemsByPlayer;
+        }
+        public bool IsValid()
+        {
+            return true;
         }
 
         public string CurrentPlayer(List<Players> PlayerList)
