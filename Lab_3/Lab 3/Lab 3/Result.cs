@@ -8,7 +8,7 @@ namespace Lab_3
 {
     public class Result
     {
-        public Result()
+        public Result(List<BoardWithPlayer> boardWithPlayers)
         {
 
         }

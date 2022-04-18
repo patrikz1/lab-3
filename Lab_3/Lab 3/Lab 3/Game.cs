@@ -8,37 +8,41 @@ namespace Lab_3
 {
     internal class Game
     {
-        public List<BoardWithPlayer> SelectedItemsByPlayer { get; set; }
         public Game(List<Board> BoardList, List<Players> PlayerList, string PlayerInput)
         {
-            MakeMoves(PlayerList, BoardList, PlayerInput);
+            //Alternativt göra MakeMoves Void och göra sista linjen på den new result(SelectedItemsByPlayer)
+            new Result(MakeMoves(PlayerList, BoardList,PlayerInput));
         }
- 
-        public void MakeMoves(List<Players> PlayerList, List<Board> BoardList, string PlayerInput)
+
+        public List<BoardWithPlayer> MakeMoves(List<Players> PlayerList, List<Board> BoardList, string PlayerInput)
         {
-            var PlayerInputSplit = PlayerInput.Split('.');
-
-            var BigBoardSplit = PlayerInputSplit[0].ToUpper();
-            var SmallSquareSplit = PlayerInputSplit[1].ToUpper();
-
-            var FindBigBoardIndex = BoardList.FindIndex(x => x.BigSquare.Equals(BigBoardSplit));
-            var FindBigBoardItem = BoardList[FindBigBoardIndex];
-            var FindSmallSquareIndex = Array.FindIndex(FindBigBoardItem.SmallSquares, row => row.Contains(SmallSquareSplit));
-
-            var SmallSquare = FindBigBoardItem.SmallSquares[FindSmallSquareIndex];
-            var BigBoard = FindBigBoardItem.BigSquare;
-
             var SelectedItemsByPlayer = new List<BoardWithPlayer>();
-            SelectedItemsByPlayer.Add(new()
+            PlayerInput = PlayerInput.Replace(" ", "");
+            var MoveSplit = PlayerInput.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            if (MoveSplit.Length > 0)
             {
-                BigBoard = BigBoard,
-                SmallSquare = SmallSquare,
-                Player = CurrentPlayer(PlayerList)
-            });
+                foreach (var move in MoveSplit)
+                {
+                    var SquareSplit = move.Split('.');
+                    var BigBoardSplit = SquareSplit[0].ToUpper();
+                    var SmallSquareSplit = SquareSplit[1].ToUpper();
 
-            this.SelectedItemsByPlayer = SelectedItemsByPlayer;
-            // sen kanske vi måste serialize'a denna lista så den hålls kvar å inte "tappar" sina förra val. utan har en xml fil med alla föredetta val.
+                    var FindBigBoardIndex = BoardList.FindIndex(x => x.BigSquare.Equals(BigBoardSplit));
+                    var FindBigBoardItem = BoardList[FindBigBoardIndex];
+                    var FindSmallSquareIndex = Array.FindIndex(FindBigBoardItem.SmallSquares, row => row.Contains(SmallSquareSplit));
 
+                    var SmallSquare = FindBigBoardItem.SmallSquares[FindSmallSquareIndex];
+                    var BigBoard = FindBigBoardItem.BigSquare;
+
+                    SelectedItemsByPlayer.Add(new()
+                    {
+                        BigBoard = BigBoard,
+                        SmallSquare = SmallSquare,
+                        Player = CurrentPlayer(PlayerList)
+                    });
+                }
+            }
+            return SelectedItemsByPlayer;
         }
 
         public string CurrentPlayer(List<Players> PlayerList)
