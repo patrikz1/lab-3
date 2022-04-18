@@ -54,12 +54,13 @@ namespace Lab_3
         }
         public bool IsValid()
         {
+            //Return true if move not already in SelectedItemsByPlayer
             return true;
         }
 
         public string CurrentPlayer(List<Players> PlayerList)
         {
-            // Return player name based on Last entry player in SelectedItemsByPlayers list (take the other one, so its 1-2-1-2).
+            //Varannan player, X-O-X-O etc.
             return "X";
         }
     }
