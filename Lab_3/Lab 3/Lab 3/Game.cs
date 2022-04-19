@@ -10,7 +10,7 @@ namespace Lab_3
     {
         public Game(List<Board> BoardList, List<Players> PlayerList, string PlayerInput)
         {
-            MakeMoves(PlayerList, BoardList,PlayerInput);
+            MakeMoves(PlayerList, BoardList, PlayerInput);
         }
 
         public List<BoardWithPlayer> MakeMoves(List<Players> PlayerList, List<Board> BoardList, string PlayerInput)
@@ -32,49 +32,64 @@ namespace Lab_3
 
                     var SmallSquare = FindBigBoardItem.SmallSquares![FindSmallSquareIndex];
                     var BigBoard = FindBigBoardItem.BigSquare;
-                    if (IsValid())
-                    {
+                    
                         SelectedItemsByPlayer.Add(new()
                         {
                             BigBoard = BigBoard,
                             SmallSquare = SmallSquare,
                             Player = CurrentPlayer(PlayerList, SelectedItemsByPlayer)
-                        }) ;
-                    }
+                        });
+                        
+                    CheckNotValid(SelectedItemsByPlayer);
+                    
                     var result = new Result().CheckWinSmallBoards(SelectedItemsByPlayer);
-                    if(result == true)
+                    if (result == true)
                     {
                         // add to a list of boards that has been won, then if you try to add something that is in this list again = not valid 
                     }
-                    
+
                 }
             }
             return SelectedItemsByPlayer;
         }
-        public bool IsValid()
+        public bool CheckNotValid(List<BoardWithPlayer> selectedItemsByPlayer)
         {
-            //Return true if move not already in SelectedItemsByPlayer
-            return true;
+            foreach (var item in selectedItemsByPlayer)
+            {
+                BoardWithPlayer CurrentItem = selectedItemsByPlayer.Last();
+                if (item != CurrentItem)
+                {
+                    bool containsBigBoard = item.BigBoard!.Equals(CurrentItem.BigBoard);
+                    bool containsSmallSquare = item.SmallSquare!.Equals(CurrentItem.SmallSquare);
+                    if (containsBigBoard && containsSmallSquare) // || (or) board already complete (when i have done the result)
+                    {
+                        selectedItemsByPlayer.Remove(CurrentItem);
+                        return true;
+                    }
+
+                }
+            }
+            return false;
         }
 
         public string CurrentPlayer(List<Players> PlayerList, List<BoardWithPlayer> SelectedItems)
-        {
-            
-                if (SelectedItems.Count % 2 == 0 || SelectedItems.Count == 0)
-                {
-                    return PlayerList[0].Player!.ToString();
-                }
-                else
-                {
-                    return PlayerList[1].Player!.ToString();
-                }
+                    {
 
-            //! is the null-forgiving operator,
-            //telling the compiler that, even though it normally wouldn't allow it,
-            //it should look the other way and allow it anyway, because we know better.
-            //null! itself has little practical use,
-            //as it all but negates the usefulness of nullable reference types.
-            //It's more useful when you know an expression can't be null, but the compiler doesn't
-        }
-    }
-}
+                        if (SelectedItems.Count % 2 == 0 || SelectedItems.Count == 0)
+                        {
+                            return PlayerList[0].Player!.ToString();
+                        }
+                        else
+                        {
+                            return PlayerList[1].Player!.ToString();
+                        }
+
+                        //! is the null-forgiving operator,
+                        //telling the compiler that, even though it normally wouldn't allow it,
+                        //it should look the other way and allow it anyway, because we know better.
+                        //null! itself has little practical use,
+                        //as it all but negates the usefulness of nullable reference types.
+                        //It's more useful when you know an expression can't be null, but the compiler doesn't
+                    }
+                }
+            }
