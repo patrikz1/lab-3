@@ -12,6 +12,7 @@ namespace Lab_3
         public string? BigSquare { get; set; }
         public Board()
         {
+            SmallSquares = null; BigSquare = null; 
         }
 
     }
@@ -23,7 +24,7 @@ namespace Lab_3
 
         public BoardWithPlayer()
         {
-
+            SmallSquare = null; BigBoard = null; Player = null;
         }
 
     }

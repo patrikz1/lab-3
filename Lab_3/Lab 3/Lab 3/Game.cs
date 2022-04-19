@@ -26,11 +26,11 @@ namespace Lab_3
                     var BigBoardSplit = SquareSplit[0].ToUpper();
                     var SmallSquareSplit = SquareSplit[1].ToUpper();
 
-                    var FindBigBoardIndex = BoardList.FindIndex(x => x.BigSquare.Equals(BigBoardSplit));
+                    var FindBigBoardIndex = BoardList.FindIndex(x => x.BigSquare!.Equals(BigBoardSplit));
                     var FindBigBoardItem = BoardList[FindBigBoardIndex];
-                    var FindSmallSquareIndex = Array.FindIndex(FindBigBoardItem.SmallSquares, x => x.Contains(SmallSquareSplit));
+                    var FindSmallSquareIndex = Array.FindIndex(FindBigBoardItem.SmallSquares!, x => x.Contains(SmallSquareSplit));
 
-                    var SmallSquare = FindBigBoardItem.SmallSquares[FindSmallSquareIndex];
+                    var SmallSquare = FindBigBoardItem.SmallSquares![FindSmallSquareIndex];
                     var BigBoard = FindBigBoardItem.BigSquare;
                     if (IsValid())
                     {
@@ -59,14 +59,22 @@ namespace Lab_3
 
         public string CurrentPlayer(List<Players> PlayerList, List<BoardWithPlayer> SelectedItems)
         {
-            if (SelectedItems.Count % 2 == 0 || SelectedItems.Count == 0)
-            {
-                return PlayerList[0].Player.ToString();
-            }
-            else
-            {
-                return PlayerList[1].Player.ToString();
-            }
+            
+                if (SelectedItems.Count % 2 == 0 || SelectedItems.Count == 0)
+                {
+                    return PlayerList[0].Player!.ToString();
+                }
+                else
+                {
+                    return PlayerList[1].Player!.ToString();
+                }
+
+            //! is the null-forgiving operator,
+            //telling the compiler that, even though it normally wouldn't allow it,
+            //it should look the other way and allow it anyway, because we know better.
+            //null! itself has little practical use,
+            //as it all but negates the usefulness of nullable reference types.
+            //It's more useful when you know an expression can't be null, but the compiler doesn't
         }
     }
 }

@@ -22,8 +22,8 @@ namespace Lab_3
             List<Board> boards = new List<Board>();
             for (int i = 0; i < SmallSquares.Length; i++)
             {
-                string? BigSquare = SmallSquares.GetValue(i).ToString();
-                boards.Add( new()
+                string? BigSquare = SmallSquares.GetValue(i)!.ToString();
+                boards.Add(new()
                 {
                     BigSquare = BigSquare,
                     SmallSquares = SmallSquares,
@@ -39,11 +39,11 @@ namespace Lab_3
 
             for (int i = 0; i < Players.Length; i++)
             {
-                string? PlayersIteration = Players.GetValue(i).ToString();
+                string? PlayersIteration = Players.GetValue(i)!.ToString();
                 PlayerList.Add(new()
                 {
                     Player = PlayersIteration,
-                });
+                }) ;
             }
             return PlayerList;
         }
