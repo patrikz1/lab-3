@@ -46,6 +46,7 @@ namespace Lab_3
                     if (result == true)
                     {
                         // add to a list of boards that has been won, then if you try to add something that is in this list again = not valid 
+                        //SelectedItemsByPlayer.Last().BigBoard == WON ---- CheckNotValid, if (containsBigBoard && containsSmallSquare || WON)
                     }
 
                 }

@@ -8,23 +8,23 @@ namespace Lab_3
 {
     public class Board
     {
-        public string[]? SmallSquares { get; set; }
-        public string? BigSquare { get; set; }
+        public string[]? SmallSquares { get; set; } = null;
+        public string? BigSquare { get; set; } = null;
         public Board()
         {
-            SmallSquares = null; BigSquare = null; 
+            //SmallSquares = null; BigSquare = null; 
         }
 
     }
     public class BoardWithPlayer
     {
-        public string? SmallSquare { get; set; }
-        public string? BigBoard { get; set; }
-        public string? Player { get; set; }
+        public string? SmallSquare { get; set; } = null;
+        public string? BigBoard { get; set; } = null;
+        public string? Player { get; set; } = null;
 
         public BoardWithPlayer()
         {
-            SmallSquare = null; BigBoard = null; Player = null;
+            //SmallSquare = null; BigBoard = null; Player = null;
         }
 
     }

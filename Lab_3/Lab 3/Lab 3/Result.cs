@@ -12,10 +12,33 @@ namespace Lab_3
         {
             //CheckWinSmallBoards(boardWithPlayers);
         }
-        public bool CheckWinSmallBoards(List<BoardWithPlayer> boardWithPlayers)
+        public bool CheckWinSmallBoards(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
+            var BigBoards = SelectedItemsByPlayer.GroupBy(l => l.BigBoard);
+            CheckWinDiagonal(BigBoards);
+            CheckWinHorizontal(BigBoards);
+            CheckWinVertical(BigBoards);
 
             return true;
         }
+        public bool CheckWinDiagonal(IEnumerable<IGrouping<string?,BoardWithPlayer>> boardWithPlayers)
+        {
+            //foreach (var board in boardWithPlayers)
+            //{
+            //    Console.WriteLine("SmallBoards from bigboard " + board.Key + ":");
+            //    foreach (var item in board)
+            //        Console.WriteLine("* " + item.SmallSquare);
+            //}
+            return false;
+        }
+        public bool CheckWinHorizontal(IEnumerable<IGrouping<string?, BoardWithPlayer>> boardWithPlayers)
+        {
+            return false;
+        }
+        public bool CheckWinVertical(IEnumerable<IGrouping<string?, BoardWithPlayer>> boardWithPlayers)
+        {
+            return false;
+        }
+
     }
 }
