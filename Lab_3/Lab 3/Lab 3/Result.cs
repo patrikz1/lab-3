@@ -21,14 +21,17 @@ namespace Lab_3
 
             return true;
         }
-        public bool CheckWinDiagonal(IEnumerable<IGrouping<string?,BoardWithPlayer>> boardWithPlayers)
+        public bool CheckWinDiagonal(IEnumerable<IGrouping<string?,BoardWithPlayer>> BigBoards)
         {
-            //foreach (var board in boardWithPlayers)
-            //{
-            //    Console.WriteLine("SmallBoards from bigboard " + board.Key + ":");
-            //    foreach (var item in board)
-            //        Console.WriteLine("* " + item.SmallSquare);
-            //}
+
+            foreach (var groups in BigBoards)
+            {
+                foreach(var board in groups)
+                {
+
+                }
+
+            }
             return false;
         }
         public bool CheckWinHorizontal(IEnumerable<IGrouping<string?, BoardWithPlayer>> boardWithPlayers)
