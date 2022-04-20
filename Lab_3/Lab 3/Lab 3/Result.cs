@@ -8,73 +8,82 @@ namespace Lab_3
 {
     public class Result
     {
-        public List<BoardWithPlayer> WinnerList { get; set; }
-        public Result(/*List<BoardWithPlayer> boardWithPlayers*/)
+        //public List<BoardWithPlayer> WinnerListSmallBoard  { get; set; }
+
+       List<BoardWithPlayer> WinnerListSmallBoard = new List<BoardWithPlayer>();  //ALTERNATIVT KAN MAN INITIALIZE'A NEW LIST I KONSTRUKTORN OCH HA GET SET HÄR UPPE
+        public Result(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
-            //CheckWinSmallBoards(boardWithPlayers);
+            CheckWinSmallBoards(SelectedItemsByPlayer);
+            CheckWinBigBoards(WinnerListSmallBoard);
         }
-        public bool CheckWinSmallBoards(List<BoardWithPlayer> SelectedItemsByPlayer)
+        public void CheckWinSmallBoards(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
-           var BigBoards = SelectedItemsByPlayer.GroupBy(l => l.BigBoard).ToList(); //bort med tolist
-            CheckWinDiagonal(BigBoards);
-            CheckWinHorizontal(BigBoards);
-            CheckWinVertical(BigBoards);
+            CheckWinDiagonal(SelectedItemsByPlayer, WinnerListSmallBoard);
+            CheckWinHorizontal(SelectedItemsByPlayer, WinnerListSmallBoard);
+            CheckWinVertical(SelectedItemsByPlayer, WinnerListSmallBoard);
+
+            //kanske sätta ^ till true om de lagt till nåt i winnerList, och om de finns <3 i winnerList så kör man inte CheckWinBigBoards, för då vet man ju att det är omöjligt att en bigboard vunnits.
+
+        }
+        public bool CheckWinBigBoards(List<BoardWithPlayer> WinnerList)
+        {
+            //var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
 
             return true;
         }
-        public bool CheckWinDiagonal(List<IGrouping<string?, BoardWithPlayer>> BigBoards) /**/  //Ienumerable ist för list
+        public bool CheckWinDiagonal(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard) 
         {
-            List<BoardWithPlayer> WinnerList = new List<BoardWithPlayer>(); //make string list?
-            foreach (var groups in BigBoards)
+            //List<BoardWithPlayer> WinnerList = new List<BoardWithPlayer>(); 
+            var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
+
+            foreach (var groups in GroupByBigBoardAndPlayer)
             {
                 foreach (var board in groups)
                 {
                     if (groups.Any(k => k.SmallSquare!.Contains("NW") && groups.Any(k => k.SmallSquare!.Contains("CC") && groups.Any(k => k.SmallSquare!.Contains("SE"))))
                         || groups.Any(k => k.SmallSquare!.Contains("NE") && groups.Any(k => k.SmallSquare!.Contains("CC") && groups.Any(k => k.SmallSquare!.Contains("SW")))))
-                        //and Check player = the same aswell
                     {
-                        // WinnerList.Add(groups.key, player???); 
-                        this.WinnerList = WinnerList;
-                        //return true????
+                        WinnerListSmallBoard.Add(board); 
+                        this.WinnerListSmallBoard = WinnerListSmallBoard;
                     }
                 }
             }
             return false;
         }
-        public bool CheckWinHorizontal(List<IGrouping<string?, BoardWithPlayer>> BigBoards)
+        public bool CheckWinHorizontal(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
-            List<BoardWithPlayer> WinnerList = new List<BoardWithPlayer>(); //make string list?
-            foreach (var groups in BigBoards)
+            //List<BoardWithPlayer> WinnerList = new List<BoardWithPlayer>(); //make string list?
+            var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
+            foreach (var groups in GroupByBigBoardAndPlayer)
             {
                 foreach (var board in groups)
                 {
                     if (groups.Any(k => k.SmallSquare!.Contains("NW") && groups.Any(k => k.SmallSquare!.Contains("NC") && groups.Any(k => k.SmallSquare!.Contains("NE"))))
                         || groups.Any(k => k.SmallSquare!.Contains("CW") && groups.Any(k => k.SmallSquare!.Contains("CC") && groups.Any(k => k.SmallSquare!.Contains("CE"))))
                         || groups.Any(k => k.SmallSquare!.Contains("SW") && groups.Any(k => k.SmallSquare!.Contains("SC") && groups.Any(k => k.SmallSquare!.Contains("SE")))))
-                    //and Check player = the same aswell
                     {
-                        // WinnerList.Add(groups.key, player???); 
-                        this.WinnerList = WinnerList;
+                        WinnerListSmallBoard.Add(board);
+                        this.WinnerListSmallBoard = WinnerListSmallBoard;
                         //return true????
                     }
                 }
             }
             return false;
         }
-        public bool CheckWinVertical(IEnumerable<IGrouping<string?, BoardWithPlayer>> BigBoards)
+        public bool CheckWinVertical(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
-            List<BoardWithPlayer> WinnerList = new List<BoardWithPlayer>(); //make string list?
-            foreach (var groups in BigBoards)
+            //List<BoardWithPlayer> WinnerList = new List<BoardWithPlayer>(); //make string list?
+            var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
+            foreach (var groups in GroupByBigBoardAndPlayer)
             {
                 foreach (var board in groups)
                 {
                     if (groups.Any(k => k.SmallSquare!.Contains("NW") && groups.Any(k => k.SmallSquare!.Contains("CW") && groups.Any(k => k.SmallSquare!.Contains("SW"))))
                         || groups.Any(k => k.SmallSquare!.Contains("NC") && groups.Any(k => k.SmallSquare!.Contains("CC") && groups.Any(k => k.SmallSquare!.Contains("SC"))))
                         || groups.Any(k => k.SmallSquare!.Contains("NE") && groups.Any(k => k.SmallSquare!.Contains("CE") && groups.Any(k => k.SmallSquare!.Contains("SE")))))
-                    //and Check player = the same aswell
                     {
-                        // WinnerList.Add(groups.key, player???); 
-                        this.WinnerList = WinnerList;
+                        WinnerListSmallBoard.Add(board);
+                        this.WinnerListSmallBoard = WinnerListSmallBoard;
                         //return true????
                     }
                 }

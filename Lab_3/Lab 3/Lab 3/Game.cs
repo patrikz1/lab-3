@@ -42,12 +42,12 @@ namespace Lab_3
                         
                     CheckNotValid(SelectedItemsByPlayer);
                     
-                    var result = new Result().CheckWinSmallBoards(SelectedItemsByPlayer);
-                    if (result == true)
-                    {
-                        // add to a list of boards that has been won, then if you try to add something that is in this list again = not valid 
-                        //SelectedItemsByPlayer.Last().BigBoard == WON ---- CheckNotValid, if (containsBigBoard && containsSmallSquare || WON)
-                    }
+                    var result = new Result(SelectedItemsByPlayer);
+                    //if (result == true)
+                    //{
+                    //    // add to a list of boards that has been won, then if you try to add something that is in this list again = not valid 
+                    //    //SelectedItemsByPlayer.Last().BigBoard == WON ---- CheckNotValid, if (containsBigBoard && containsSmallSquare || WON)
+                    //}
 
                 }
             }
