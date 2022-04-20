@@ -8,34 +8,92 @@ namespace Lab_3
 {
     public class Result
     {
-        //public List<BoardWithPlayer> WinnerListSmallBoard  { get; set; }
-
-       List<BoardWithPlayer> WinnerListSmallBoard = new List<BoardWithPlayer>();  //ALTERNATIVT KAN MAN INITIALIZE'A NEW LIST I KONSTRUKTORN OCH HA GET SET HÄR UPPE
+        List<BoardWithPlayer> WinnerListSmallBoard = new List<BoardWithPlayer>(); 
+        List<dynamic> WinnerListBigBoard = new List<dynamic>();
         public Result(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
             CheckWinSmallBoards(SelectedItemsByPlayer);
-            CheckWinBigBoards(WinnerListSmallBoard);
+            CheckWinBigBoards(WinnerListSmallBoard, WinnerListBigBoard);
         }
         public void CheckWinSmallBoards(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
-            CheckWinDiagonal(SelectedItemsByPlayer, WinnerListSmallBoard);
-            CheckWinHorizontal(SelectedItemsByPlayer, WinnerListSmallBoard);
-            CheckWinVertical(SelectedItemsByPlayer, WinnerListSmallBoard);
-
-            //kanske sätta ^ till true om de lagt till nåt i winnerList, och om de finns <3 i winnerList så kör man inte CheckWinBigBoards, för då vet man ju att det är omöjligt att en bigboard vunnits.
+            CheckWinDiagonalSmallBoard(SelectedItemsByPlayer, WinnerListSmallBoard);
+            CheckWinHorizontalSmallBoard(SelectedItemsByPlayer, WinnerListSmallBoard);
+            CheckWinVerticalSmallBoard(SelectedItemsByPlayer, WinnerListSmallBoard);
 
         }
-        public bool CheckWinBigBoards(List<BoardWithPlayer> WinnerList)
+        public void CheckWinBigBoards(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
-            //var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
+            CheckWinDiagonalBigBoard(WinnerListSmallBoard,WinnerListBigBoard);
+            CheckWinHorizontalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
+            CheckWinVerticalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
+
+        }
+        public bool CheckWinDiagonalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
+        {
+            var SelectWonBoardAndPlayer = WinnerListSmallBoard.GroupBy(x => new { x.BigBoard, x.Player }).Select(i => new { i.Key.BigBoard, i.Key.Player });
+            foreach (var groups in SelectWonBoardAndPlayer.GroupBy(x => x.Player))
+            {
+                foreach (var item in groups)
+                {
+                    if (groups.Any(k => k.BigBoard!.Contains("NW")) && groups.Any(k => k.BigBoard!.Contains("CC") && groups.Any(k => k.BigBoard!.Contains("SE")))
+                        || groups.Any(k => k.BigBoard!.Contains("NE")) && groups.Any(k => k.BigBoard!.Contains("CC") && groups.Any(k => k.BigBoard!.Contains("SW"))))
+                    {
+                        if (!WinnerListBigBoard.Contains(groups))
+                        {
+                            WinnerListBigBoard.Add(groups);
+                        }
+                    }
+                }
+            }
 
             return true;
         }
-        public bool CheckWinDiagonal(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard) 
+        public bool CheckWinHorizontalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
-            //List<BoardWithPlayer> WinnerList = new List<BoardWithPlayer>(); 
-            var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
+            var SelectWonBoardAndPlayer = WinnerListSmallBoard.GroupBy(x => new { x.BigBoard, x.Player }).Select(i => new { i.Key.BigBoard, i.Key.Player });
+            foreach (var groups in SelectWonBoardAndPlayer.GroupBy(x => x.Player))
+            {
+                foreach (var item in groups)
+                {
+                    if (groups.Any(k => k.BigBoard!.Contains("NW")) && groups.Any(k => k.BigBoard!.Contains("NC") && groups.Any(k => k.BigBoard!.Contains("NE")))
+                        || groups.Any(k => k.BigBoard!.Contains("CW")) && groups.Any(k => k.BigBoard!.Contains("CC") && groups.Any(k => k.BigBoard!.Contains("CE")))
+                        || groups.Any(k => k.BigBoard!.Contains("SW")) && groups.Any(k => k.BigBoard!.Contains("SC") && groups.Any(k => k.BigBoard!.Contains("SE"))))
+                    {
+                        if (!WinnerListBigBoard.Contains(groups))
+                        {
+                            WinnerListBigBoard.Add(groups);
+                        }
+                    }
+                }
+            }
 
+            return true;
+        }
+        public bool CheckWinVerticalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
+        {
+            var SelectWonBoardAndPlayer = WinnerListSmallBoard.GroupBy(x => new { x.BigBoard, x.Player }).Select(i => new { i.Key.BigBoard, i.Key.Player });
+            foreach (var groups in SelectWonBoardAndPlayer.GroupBy(x => x.Player))
+            {
+                foreach (var item in groups)
+                {
+                    if (groups.Any(k => k.BigBoard!.Contains("NW")) && groups.Any(k => k.BigBoard!.Contains("CW") && groups.Any(k => k.BigBoard!.Contains("SW")))
+                        || groups.Any(k => k.BigBoard!.Contains("NC")) && groups.Any(k => k.BigBoard!.Contains("CC") && groups.Any(k => k.BigBoard!.Contains("SC")))
+                        || groups.Any(k => k.BigBoard!.Contains("NE")) && groups.Any(k => k.BigBoard!.Contains("CE") && groups.Any(k => k.BigBoard!.Contains("SE"))))
+                    {
+                        if (!WinnerListBigBoard.Contains(groups))
+                        {
+                            WinnerListBigBoard.Add(groups);
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+        public bool CheckWinDiagonalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard) 
+        {
+            var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
             foreach (var groups in GroupByBigBoardAndPlayer)
             {
                 foreach (var board in groups)
@@ -50,9 +108,8 @@ namespace Lab_3
             }
             return false;
         }
-        public bool CheckWinHorizontal(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
+        public bool CheckWinHorizontalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
-            //List<BoardWithPlayer> WinnerList = new List<BoardWithPlayer>(); //make string list?
             var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
             foreach (var groups in GroupByBigBoardAndPlayer)
             {
@@ -64,15 +121,13 @@ namespace Lab_3
                     {
                         WinnerListSmallBoard.Add(board);
                         this.WinnerListSmallBoard = WinnerListSmallBoard;
-                        //return true????
                     }
                 }
             }
             return false;
         }
-        public bool CheckWinVertical(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
+        public bool CheckWinVerticalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
-            //List<BoardWithPlayer> WinnerList = new List<BoardWithPlayer>(); //make string list?
             var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
             foreach (var groups in GroupByBigBoardAndPlayer)
             {
@@ -84,7 +139,6 @@ namespace Lab_3
                     {
                         WinnerListSmallBoard.Add(board);
                         this.WinnerListSmallBoard = WinnerListSmallBoard;
-                        //return true????
                     }
                 }
             }

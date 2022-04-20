@@ -84,13 +84,6 @@ namespace Lab_3
                         {
                             return PlayerList[1].Player!.ToString();
                         }
-
-                        //! is the null-forgiving operator,
-                        //telling the compiler that, even though it normally wouldn't allow it,
-                        //it should look the other way and allow it anyway, because we know better.
-                        //null! itself has little practical use,
-                        //as it all but negates the usefulness of nullable reference types.
-                        //It's more useful when you know an expression can't be null, but the compiler doesn't
                     }
                 }
             }
