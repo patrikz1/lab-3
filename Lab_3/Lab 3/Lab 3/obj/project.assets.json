@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\patri\\.nuget\\packages\\": {}
+    "C:\\Users\\Sebene\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\patri\\Documents\\GitHub\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj",
+      "projectUniqueName": "C:\\Users\\Sebene\\Source\\Repos\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj",
       "projectName": "Lab 3",
-      "projectPath": "C:\\Users\\patri\\Documents\\GitHub\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj",
-      "packagesPath": "C:\\Users\\patri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\patri\\Documents\\GitHub\\lab-3\\Lab_3\\Lab 3\\Lab 3\\obj\\",
+      "projectPath": "C:\\Users\\Sebene\\Source\\Repos\\lab-3\\Lab_3\\Lab 3\\Lab 3\\Lab 3.csproj",
+      "packagesPath": "C:\\Users\\Sebene\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Sebene\\Source\\Repos\\lab-3\\Lab_3\\Lab 3\\Lab 3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\patri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sebene\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

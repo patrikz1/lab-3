@@ -8,8 +8,8 @@ namespace Lab_3
 {
     public class Board
     {
-        public string[]? SmallSquares { get; set; } = null;
-        public string? BigSquare { get; set; } = null;
+        public string[]? SmallSquares { get; set; }
+        public string? BigSquare { get; set; }
         public Board()
         {
             //SmallSquares = null; BigSquare = null; 

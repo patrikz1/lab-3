@@ -1,20 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lab_3
+﻿namespace Lab_3
 {
     public class Result
     {
-        List<BoardWithPlayer> WinnerListSmallBoard = new List<BoardWithPlayer>(); 
+    
+        List<BoardWithPlayer> WinnerListSmallBoard = new List<BoardWithPlayer>();
         List<dynamic> WinnerListBigBoard = new List<dynamic>();
         public Result(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
             CheckWinSmallBoards(SelectedItemsByPlayer);
             CheckWinBigBoards(WinnerListSmallBoard, WinnerListBigBoard);
         }
+
+        public object CheckWinBigBoards(object winnerList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Result()
+        {
+        }
+
         public void CheckWinSmallBoards(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
             CheckWinDiagonalSmallBoard(SelectedItemsByPlayer, WinnerListSmallBoard);
@@ -22,9 +27,15 @@ namespace Lab_3
             CheckWinVerticalSmallBoard(SelectedItemsByPlayer, WinnerListSmallBoard);
 
         }
+
+        public object CheckWinSmallBoards(object winnerList)
+        {
+            throw new NotImplementedException();
+        }
+
         public void CheckWinBigBoards(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
-            CheckWinDiagonalBigBoard(WinnerListSmallBoard,WinnerListBigBoard);
+            CheckWinDiagonalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
             CheckWinHorizontalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
             CheckWinVerticalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
 
@@ -91,7 +102,7 @@ namespace Lab_3
 
             return true;
         }
-        public bool CheckWinDiagonalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard) 
+        public bool CheckWinDiagonalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
             var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
             foreach (var groups in GroupByBigBoardAndPlayer)
@@ -101,7 +112,7 @@ namespace Lab_3
                     if (groups.Any(k => k.SmallSquare!.Contains("NW") && groups.Any(k => k.SmallSquare!.Contains("CC") && groups.Any(k => k.SmallSquare!.Contains("SE"))))
                         || groups.Any(k => k.SmallSquare!.Contains("NE") && groups.Any(k => k.SmallSquare!.Contains("CC") && groups.Any(k => k.SmallSquare!.Contains("SW")))))
                     {
-                        WinnerListSmallBoard.Add(board); 
+                        WinnerListSmallBoard.Add(board);
                         this.WinnerListSmallBoard = WinnerListSmallBoard;
                     }
                 }
