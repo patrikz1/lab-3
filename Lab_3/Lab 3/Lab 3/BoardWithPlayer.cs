@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace Lab_3
 {
-    public class BoardWithPlayer : IBoard
+    public class BoardWithPlayer
     {
         public string? SmallSquare { get; set; } = null;
         public string? BigBoard { get; set; } = null;
         public string? Player { get; set; } = null;
-        public string? BigSquare { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string[]? SmallSquares { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public BoardWithPlayer()
         {
-            //SmallSquare = null; BigBoard = null; Player = null;
+           
         }
         public class BigBoardSplitByPlayer
         {

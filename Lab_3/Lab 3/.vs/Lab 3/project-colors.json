@@ -5,7 +5,12 @@
       "ProjectGuid": "732b8ac2-5d8c-422c-89d3-26df1a1a2055",
       "DisplayName": "Lab 3",
       "ColorIndex": 0
+    },
+    "62159b59-b04f-4c46-aae0-5f1634ccfd9f": {
+      "ProjectGuid": "62159b59-b04f-4c46-aae0-5f1634ccfd9f",
+      "DisplayName": "TestBoards",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }

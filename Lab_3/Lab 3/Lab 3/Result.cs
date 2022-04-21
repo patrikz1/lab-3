@@ -11,11 +11,7 @@
             CheckWinBigBoards(WinnerListSmallBoard, WinnerListBigBoard);
         }
 
-        public object CheckWinBigBoards(object winnerList)
-        {
-            throw new NotImplementedException();
-        }
-
+     
         public Result()
         {
         }
@@ -27,12 +23,6 @@
             CheckWinVerticalSmallBoard(SelectedItemsByPlayer, WinnerListSmallBoard);
 
         }
-
-        public object CheckWinSmallBoards(object winnerList)
-        {
-            throw new NotImplementedException();
-        }
-
         public void CheckWinBigBoards(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
             CheckWinDiagonalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
@@ -40,6 +30,7 @@
             CheckWinVerticalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
 
         }
+   
         public bool CheckWinDiagonalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
             var SelectWonBoardAndPlayer = WinnerListSmallBoard.GroupBy(x => new { x.BigBoard, x.Player }).Select(i => new { i.Key.BigBoard, i.Key.Player });
@@ -155,6 +146,18 @@
             }
             return false;
         }
+
+
+        public object CheckWinBigBoards(object winnerList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object CheckWinSmallBoards(object winnerList)
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
 }
