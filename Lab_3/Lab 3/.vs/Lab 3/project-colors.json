@@ -5,7 +5,22 @@
       "ProjectGuid": "732b8ac2-5d8c-422c-89d3-26df1a1a2055",
       "DisplayName": "Lab 3",
       "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "69da254c-1d3d-4f53-b671-3f37787804b1": {
+      "ProjectGuid": "69da254c-1d3d-4f53-b671-3f37787804b1",
+      "DisplayName": "UnitTestProject1",
+      "ColorIndex": 1
+    },
+    "555c3b5e-87de-440c-b256-fe725a4ebaca": {
+      "ProjectGuid": "555c3b5e-87de-440c-b256-fe725a4ebaca",
+      "DisplayName": "UnitTestProject2",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }

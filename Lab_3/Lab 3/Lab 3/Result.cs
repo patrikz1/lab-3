@@ -11,11 +11,28 @@ namespace Lab_3
         //public List<BoardWithPlayer> WinnerListSmallBoard  { get; set; }
 
        List<BoardWithPlayer> WinnerListSmallBoard = new List<BoardWithPlayer>();  //ALTERNATIVT KAN MAN INITIALIZE'A NEW LIST I KONSTRUKTORN OCH HA GET SET HÄR UPPE
+
+        public object CheckWinBigBoards(object winnerList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object CheckWinBigBoards()
+        {
+            throw new NotImplementedException();
+        }
+
+
         public Result(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
             CheckWinSmallBoards(SelectedItemsByPlayer);
             CheckWinBigBoards(WinnerListSmallBoard);
         }
+
+        public Result()
+        {
+        }
+
         public void CheckWinSmallBoards(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
             CheckWinDiagonal(SelectedItemsByPlayer, WinnerListSmallBoard);
@@ -25,6 +42,27 @@ namespace Lab_3
             //kanske sätta ^ till true om de lagt till nåt i winnerList, och om de finns <3 i winnerList så kör man inte CheckWinBigBoards, för då vet man ju att det är omöjligt att en bigboard vunnits.
 
         }
+
+        public object CheckWinHorizontal(object winnerList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object CheckWinVertical(object winnerList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object CheckWinDiagonal(object winnerList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object CheckWinSmallBoards(object winnerList)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool CheckWinBigBoards(List<BoardWithPlayer> WinnerList)
         {
             //var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });

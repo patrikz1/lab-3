@@ -1,0 +1,6 @@
+C:\Users\Sebene\source\repos\lab ny\Lab_3\Lab 3\Lab 3\obj\Debug\net472\Lab 3.csproj.AssemblyReference.cache
+C:\Users\Sebene\source\repos\lab ny\Lab_3\Lab 3\Lab 3\obj\Debug\net472\Lab 3.csproj.SuggestedBindingRedirects.cache
+C:\Users\Sebene\source\repos\lab ny\Lab_3\Lab 3\Lab 3\obj\Debug\net472\Lab 3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sebene\source\repos\lab ny\Lab_3\Lab 3\Lab 3\obj\Debug\net472\Lab 3.AssemblyInfoInputs.cache
+C:\Users\Sebene\source\repos\lab ny\Lab_3\Lab 3\Lab 3\obj\Debug\net472\Lab 3.AssemblyInfo.cs
+C:\Users\Sebene\source\repos\lab ny\Lab_3\Lab 3\Lab 3\obj\Debug\net472\Lab 3.csproj.CoreCompileInputs.cache
