@@ -40,38 +40,33 @@ namespace Lab_3
                             Player = CurrentPlayer(PlayerList, SelectedItemsByPlayer)
                         });
                         
-                    CheckNotValid(SelectedItemsByPlayer);
+                    //CheckNotValid(SelectedItemsByPlayer);
                     
                     var result = new Result(SelectedItemsByPlayer);
-                    //if (result == true)
-                    //{
-                    //    // add to a list of boards that has been won, then if you try to add something that is in this list again = not valid 
-                    //    //SelectedItemsByPlayer.Last().BigBoard == WON ---- CheckNotValid, if (containsBigBoard && containsSmallSquare || WON)
-                    //}
 
                 }
             }
             return SelectedItemsByPlayer;
         }
-        public bool CheckNotValid(List<BoardWithPlayer> selectedItemsByPlayer)
-        {
-            foreach (var item in selectedItemsByPlayer)
-            {
-                BoardWithPlayer CurrentItem = selectedItemsByPlayer.Last();
-                if (item != CurrentItem)
-                {
-                    bool containsBigBoard = item.BigBoard!.Equals(CurrentItem.BigBoard);
-                    bool containsSmallSquare = item.SmallSquare!.Equals(CurrentItem.SmallSquare);
-                    if (containsBigBoard && containsSmallSquare) // || (or) board already complete (when i have done the result)
-                    {
-                        selectedItemsByPlayer.Remove(CurrentItem);
-                        return true;
-                    }
+        //public bool CheckNotValid(List<BoardWithPlayer> selectedItemsByPlayer)
+        //{
+        //    foreach (var item in selectedItemsByPlayer)
+        //    {
+        //        BoardWithPlayer CurrentItem = selectedItemsByPlayer.Last();
+        //        if (item != CurrentItem)
+        //        {
+        //            bool containsBigBoard = item.BigBoard!.Equals(CurrentItem.BigBoard);
+        //            bool containsSmallSquare = item.SmallSquare!.Equals(CurrentItem.SmallSquare);
+        //            if (containsBigBoard && containsSmallSquare) // || (or) board already complete (when i have done the result)
+        //            {
+        //                selectedItemsByPlayer.Remove(CurrentItem);
+        //                return true;
+        //            }
 
-                }
-            }
-            return false;
-        }
+        //        }
+        //    }
+        //    return false;
+        //}
 
         public string CurrentPlayer(List<Players> PlayerList, List<BoardWithPlayer> SelectedItems)
                     {

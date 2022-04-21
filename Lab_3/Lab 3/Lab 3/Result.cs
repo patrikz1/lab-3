@@ -7,14 +7,14 @@
         List<dynamic> WinnerListBigBoard = new List<dynamic>();
         public Result(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
-            CheckWinSmallBoards(SelectedItemsByPlayer);
-            CheckWinBigBoards(WinnerListSmallBoard, WinnerListBigBoard);
+            if (!CheckNotValid(SelectedItemsByPlayer, WinnerListSmallBoard))
+            {
+                CheckWinSmallBoards(SelectedItemsByPlayer);
+                CheckWinBigBoards(WinnerListSmallBoard, WinnerListBigBoard);
+            }
+
         }
 
-     
-        public Result()
-        {
-        }
 
         public void CheckWinSmallBoards(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
@@ -30,7 +30,26 @@
             CheckWinVerticalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
 
         }
-   
+        public bool CheckNotValid(List<BoardWithPlayer> selectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
+        {
+            foreach (var item in selectedItemsByPlayer)
+            {
+                BoardWithPlayer CurrentItem = selectedItemsByPlayer.Last();
+                if (item != CurrentItem)
+                {
+                    bool containsBigBoard = item.BigBoard!.Equals(CurrentItem.BigBoard);
+                    bool containsSmallSquare = item.SmallSquare!.Equals(CurrentItem.SmallSquare);
+                    if (containsBigBoard && containsSmallSquare) // || (or) board already complete (when i have done the result)
+                    {
+                        selectedItemsByPlayer.Remove(CurrentItem);
+                        return true;
+                    }
+
+                }
+            }
+            return false;
+        }
+
         public bool CheckWinDiagonalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
             var SelectWonBoardAndPlayer = WinnerListSmallBoard.GroupBy(x => new { x.BigBoard, x.Player }).Select(i => new { i.Key.BigBoard, i.Key.Player });
@@ -147,6 +166,11 @@
             return false;
         }
 
+
+
+        public Result()
+        {
+        }
 
         public object CheckWinBigBoards(object winnerList)
         {
