@@ -16,14 +16,14 @@ namespace Lab_3
         {
            
         }
-        public class BigBoardSplitByPlayer
-        {
-            public string? Player { get; set; } = null;
-            public string? BigBoard { get; set; } = null;
-            public BigBoardSplitByPlayer()
-            {
-
-            }
-        }
     }
+    //public class BigBoardSplitByPlayer
+    //{
+    //    public string? Player { get; set; } = null;
+    //    public string? BigBoard { get; set; } = null;
+    //    public BigBoardSplitByPlayer()
+    //    {
+
+    //    }
+    //}
 }

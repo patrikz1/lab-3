@@ -2,19 +2,17 @@
 {
     public class Result
     {
-    
+
         List<BoardWithPlayer> WinnerListSmallBoard = new List<BoardWithPlayer>();
         List<dynamic> WinnerListBigBoard = new List<dynamic>();
         public Result(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
-            if (!CheckNotValid(SelectedItemsByPlayer, WinnerListSmallBoard))
-            {
-                CheckWinSmallBoards(SelectedItemsByPlayer);
-                CheckWinBigBoards(WinnerListSmallBoard, WinnerListBigBoard);
-            }
+            CheckWinSmallBoards(SelectedItemsByPlayer);
+            //CheckNotValid(SelectedItemsByPlayer, WinnerListSmallBoard);
+
+            CheckWinBigBoards(WinnerListSmallBoard, WinnerListBigBoard);
 
         }
-
 
         public void CheckWinSmallBoards(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
@@ -23,7 +21,7 @@
             CheckWinVerticalSmallBoard(SelectedItemsByPlayer, WinnerListSmallBoard);
 
         }
-        public void CheckWinBigBoards(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
+        public void CheckWinBigBoards(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard /*List<dynamic> WinnerListBigBoard*/)
         {
             CheckWinDiagonalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
             CheckWinHorizontalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
@@ -32,14 +30,16 @@
         }
         public bool CheckNotValid(List<BoardWithPlayer> selectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
+            BoardWithPlayer CurrentItem = selectedItemsByPlayer.Last();
+
             foreach (var item in selectedItemsByPlayer)
             {
-                BoardWithPlayer CurrentItem = selectedItemsByPlayer.Last();
                 if (item != CurrentItem)
                 {
                     bool containsBigBoard = item.BigBoard!.Equals(CurrentItem.BigBoard);
                     bool containsSmallSquare = item.SmallSquare!.Equals(CurrentItem.SmallSquare);
-                    if (containsBigBoard && containsSmallSquare) // || (or) board already complete (when i have done the result)
+
+                    if (containsBigBoard && containsSmallSquare) // || (or) board already complete (when i have done the result)---  WinnerListSmallBoard.Any(k => k.BigBoard!.Contains(CurrentItem.BigBoard))
                     {
                         selectedItemsByPlayer.Remove(CurrentItem);
                         return true;
@@ -50,7 +50,33 @@
             return false;
         }
 
-        public bool CheckWinDiagonalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
+        public void OutputResult(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard, string WinnerPlayer)
+        {
+            Console.WriteLine("\nResults:");
+            foreach (var item in WinnerListBigBoard)
+            {
+                foreach (var i in item)
+                {
+                    Console.Write(i.BigBoard + ",");
+                }
+            }
+            Console.WriteLine();
+            foreach (var item in WinnerListSmallBoard.GroupBy(item => item.Player!.Contains(WinnerPlayer)))
+            {
+                if(item.Key == true)
+                {
+                    foreach (var i in item)
+                    {
+                        Console.Write(i.BigBoard + "." + i.SmallSquare + ", ");
+                    }
+                }
+            }
+
+            Console.WriteLine("\n");
+
+
+        }
+        public void CheckWinDiagonalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
             var SelectWonBoardAndPlayer = WinnerListSmallBoard.GroupBy(x => new { x.BigBoard, x.Player }).Select(i => new { i.Key.BigBoard, i.Key.Player });
             foreach (var groups in SelectWonBoardAndPlayer.GroupBy(x => x.Player))
@@ -63,14 +89,14 @@
                         if (!WinnerListBigBoard.Contains(groups))
                         {
                             WinnerListBigBoard.Add(groups);
+                            OutputResult(WinnerListSmallBoard, WinnerListBigBoard, groups.Key!);
                         }
                     }
+
                 }
             }
-
-            return true;
         }
-        public bool CheckWinHorizontalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
+        public void CheckWinHorizontalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
             var SelectWonBoardAndPlayer = WinnerListSmallBoard.GroupBy(x => new { x.BigBoard, x.Player }).Select(i => new { i.Key.BigBoard, i.Key.Player });
             foreach (var groups in SelectWonBoardAndPlayer.GroupBy(x => x.Player))
@@ -84,14 +110,13 @@
                         if (!WinnerListBigBoard.Contains(groups))
                         {
                             WinnerListBigBoard.Add(groups);
+                            OutputResult(WinnerListSmallBoard, WinnerListBigBoard,groups.Key!);
                         }
                     }
                 }
             }
-
-            return true;
         }
-        public bool CheckWinVerticalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
+        public void CheckWinVerticalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
             var SelectWonBoardAndPlayer = WinnerListSmallBoard.GroupBy(x => new { x.BigBoard, x.Player }).Select(i => new { i.Key.BigBoard, i.Key.Player });
             foreach (var groups in SelectWonBoardAndPlayer.GroupBy(x => x.Player))
@@ -99,18 +124,19 @@
                 foreach (var item in groups)
                 {
                     if (groups.Any(k => k.BigBoard!.Contains("NW")) && groups.Any(k => k.BigBoard!.Contains("CW") && groups.Any(k => k.BigBoard!.Contains("SW")))
-                        || groups.Any(k => k.BigBoard!.Contains("NC")) && groups.Any(k => k.BigBoard!.Contains("CC") && groups.Any(k => k.BigBoard!.Contains("SC")))
-                        || groups.Any(k => k.BigBoard!.Contains("NE")) && groups.Any(k => k.BigBoard!.Contains("CE") && groups.Any(k => k.BigBoard!.Contains("SE"))))
+                    || groups.Any(k => k.BigBoard!.Contains("NC")) && groups.Any(k => k.BigBoard!.Contains("CC") && groups.Any(k => k.BigBoard!.Contains("SC")))
+                    || groups.Any(k => k.BigBoard!.Contains("NE")) && groups.Any(k => k.BigBoard!.Contains("CE") && groups.Any(k => k.BigBoard!.Contains("SE"))))
                     {
                         if (!WinnerListBigBoard.Contains(groups))
                         {
                             WinnerListBigBoard.Add(groups);
+                            OutputResult(WinnerListSmallBoard, WinnerListBigBoard, groups.Key!);
+
                         }
                     }
                 }
             }
 
-            return true;
         }
         public bool CheckWinDiagonalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
@@ -125,6 +151,7 @@
                         WinnerListSmallBoard.Add(board);
                         this.WinnerListSmallBoard = WinnerListSmallBoard;
                     }
+
                 }
             }
             return false;

@@ -39,9 +39,9 @@ namespace Lab_3
                             SmallSquare = SmallSquare,
                             Player = CurrentPlayer(PlayerList, SelectedItemsByPlayer)
                         });
-                        
+
                     //CheckNotValid(SelectedItemsByPlayer);
-                    
+
                     var result = new Result(SelectedItemsByPlayer);
 
                 }
