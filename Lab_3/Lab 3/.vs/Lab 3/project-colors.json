@@ -35,7 +35,12 @@
       "ProjectGuid": "015bde3d-6ebc-4265-9053-552ebc771e49",
       "DisplayName": "TestBoards",
       "ColorIndex": 5
+    },
+    "8c0c806d-0c52-42be-9aef-97c98fb69901": {
+      "ProjectGuid": "8c0c806d-0c52-42be-9aef-97c98fb69901",
+      "DisplayName": "TestBoards",
+      "ColorIndex": 6
     }
   },
-  "NextColorIndex": 6
+  "NextColorIndex": 7
 }
