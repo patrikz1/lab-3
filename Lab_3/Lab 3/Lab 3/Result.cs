@@ -39,8 +39,6 @@
         public void CheckNotValid(List<BoardWithPlayer> selectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
             BoardWithPlayer LastItem = selectedItemsByPlayer.Last();
-            //bool AlreadyWonSquare = WinnerListSmallBoard.Any(i => i.BigBoard!.Contains(LastItem.BigBoard!));
-
 
             foreach (var item in selectedItemsByPlayer)
             {
@@ -107,6 +105,7 @@
                 Console.Write(0 + "." + 0);
             }
             Console.WriteLine("\n");
+            this.WinnerPlayer = WinnerPlayer;
         }
         public void CheckWinDiagonalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {

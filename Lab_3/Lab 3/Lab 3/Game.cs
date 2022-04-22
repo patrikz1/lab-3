@@ -55,37 +55,17 @@ namespace Lab_3
                 }
             return SelectedItemsByPlayer;
         }
-        //public bool CheckNotValid(List<BoardWithPlayer> selectedItemsByPlayer)
-        //{
-        //    foreach (var item in selectedItemsByPlayer)
-        //    {
-        //        BoardWithPlayer CurrentItem = selectedItemsByPlayer.Last();
-        //        if (item != CurrentItem)
-        //        {
-        //            bool containsBigBoard = item.BigBoard!.Equals(CurrentItem.BigBoard);
-        //            bool containsSmallSquare = item.SmallSquare!.Equals(CurrentItem.SmallSquare);
-        //            if (containsBigBoard && containsSmallSquare) // || (or) board already complete (when i have done the result)
-        //            {
-        //                selectedItemsByPlayer.Remove(CurrentItem);
-        //                return true;
-        //            }
-
-        //        }
-        //    }
-        //    return false;
-        //}
-
         public string CurrentPlayer(List<Players> PlayerList, List<BoardWithPlayer> SelectedItems)
-                    {
+        {
 
-                        if (SelectedItems.Count % 2 == 0 || SelectedItems.Count == 0)
-                        {
-                            return PlayerList[0].Player!.ToString();
-                        }
-                        else
-                        {
-                            return PlayerList[1].Player!.ToString();
-                        }
-                    }
+            if (SelectedItems.Count % 2 == 0 || SelectedItems.Count == 0)
+                {
+                    return PlayerList[0].Player!.ToString();
                 }
-            }
+            else
+                {
+                    return PlayerList[1].Player!.ToString();
+                }
+        }
+    }
+}

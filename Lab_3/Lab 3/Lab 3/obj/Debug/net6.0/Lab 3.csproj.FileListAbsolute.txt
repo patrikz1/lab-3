@@ -27,3 +27,4 @@ C:\Users\patri\Documents\GitHub\lab-3\Lab_3\Lab 3\Lab 3\obj\Debug\net6.0\Lab 3.d
 C:\Users\patri\Documents\GitHub\lab-3\Lab_3\Lab 3\Lab 3\obj\Debug\net6.0\ref\Lab 3.dll
 C:\Users\patri\Documents\GitHub\lab-3\Lab_3\Lab 3\Lab 3\obj\Debug\net6.0\Lab 3.pdb
 C:\Users\patri\Documents\GitHub\lab-3\Lab_3\Lab 3\Lab 3\obj\Debug\net6.0\Lab 3.genruntimeconfig.cache
+C:\Users\patri\Documents\GitHub\lab-3\Lab_3\Lab 3\Lab 3\obj\Debug\net6.0\Lab 3.csproj.AssemblyReference.cache
