@@ -1,6 +1,6 @@
 ﻿namespace Lab_3
 {
-    public class Result
+    public class Result :IBoard
     {
 
         List<BoardWithPlayer> WinnerListSmallBoard = new List<BoardWithPlayer>();
