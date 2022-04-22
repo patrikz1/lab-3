@@ -28,7 +28,13 @@
             CheckWinVerticalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
 
         }
-        public bool CheckNotValid(List<BoardWithPlayer> selectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
+        public void OutputResult(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard, string WinnerPlayer)
+        {
+            OutputWinningLargeSquares(WinnerListBigBoard);
+            OutputWinningSmallSquares(WinnerListSmallBoard, WinnerPlayer);
+            OutputWinningValues(WinnerListSmallBoard, WinnerPlayer);
+        }
+        public void CheckNotValid(List<BoardWithPlayer> selectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
             BoardWithPlayer CurrentItem = selectedItemsByPlayer.Last();
 
@@ -42,15 +48,13 @@
                     if (containsBigBoard && containsSmallSquare) // || (or) board already complete (when i have done the result)---  WinnerListSmallBoard.Any(k => k.BigBoard!.Contains(CurrentItem.BigBoard))
                     {
                         selectedItemsByPlayer.Remove(CurrentItem);
-                        return true;
                     }
-
                 }
             }
-            return false;
         }
 
-        public void OutputResult(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard, string WinnerPlayer)
+      
+        public void OutputWinningLargeSquares(List<dynamic> WinnerListBigBoard)
         {
             Console.WriteLine("\nResults:");
             foreach (var item in WinnerListBigBoard)
@@ -60,10 +64,13 @@
                     Console.Write(i.BigBoard + ",");
                 }
             }
+        }
+        public void OutputWinningSmallSquares(List<BoardWithPlayer> WinnerListSmallBoard, string WinnerPlayer)
+        {
             Console.WriteLine();
             foreach (var item in WinnerListSmallBoard.GroupBy(item => item.Player!.Contains(WinnerPlayer)))
             {
-                if(item.Key == true)
+                if (item.Key == true)
                 {
                     foreach (var i in item)
                     {
@@ -71,10 +78,26 @@
                     }
                 }
             }
-
+        }
+        public void OutputWinningValues(List<BoardWithPlayer> WinnerListSmallBoard, string WinnerPlayer)
+        {
+            Console.WriteLine();
+            foreach (var item in WinnerListSmallBoard.GroupBy(item => item.Player!.Contains(WinnerPlayer)))
+            {
+                if (item.Key == true)
+                {
+                    Console.Write(1 + "." + item.Count() / 3 + ", ");
+                }
+                else if (item.Key == false)
+                {
+                    Console.Write(0 + "." + item.Count() / 3 + ", ");
+                }
+            }
+            if (WinnerListSmallBoard.All(i => i.Player!.Contains(WinnerPlayer)))
+            {
+                Console.Write(0 + "." + 0);
+            }
             Console.WriteLine("\n");
-
-
         }
         public void CheckWinDiagonalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
@@ -138,7 +161,7 @@
             }
 
         }
-        public bool CheckWinDiagonalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
+        public void CheckWinDiagonalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
             var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
             foreach (var groups in GroupByBigBoardAndPlayer)
@@ -154,9 +177,8 @@
 
                 }
             }
-            return false;
         }
-        public bool CheckWinHorizontalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
+        public void CheckWinHorizontalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
             var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
             foreach (var groups in GroupByBigBoardAndPlayer)
@@ -172,9 +194,8 @@
                     }
                 }
             }
-            return false;
         }
-        public bool CheckWinVerticalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
+        public void CheckWinVerticalSmallBoard(List<BoardWithPlayer> SelectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
             var GroupByBigBoardAndPlayer = SelectedItemsByPlayer.GroupBy(x => new { x.BigBoard, x.Player });
             foreach (var groups in GroupByBigBoardAndPlayer)
@@ -190,7 +211,6 @@
                     }
                 }
             }
-            return false;
         }
 
 

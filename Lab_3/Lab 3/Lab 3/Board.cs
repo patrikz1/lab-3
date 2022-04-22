@@ -12,7 +12,6 @@ namespace Lab_3
         public string? BigSquare { get; set; }
         public Board()
         {
-            //SmallSquares = null; BigSquare = null; 
         }
 
     }
