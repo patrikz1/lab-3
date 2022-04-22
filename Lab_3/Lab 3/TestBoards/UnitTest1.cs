@@ -6,8 +6,8 @@ namespace TestBoards
     [TestClass]
     public class UnitTest1
     {
-        string TestData = "NW.CC, NC.CC, NW.NW, NE.CC, NW.SE, CE.CC, CW.CC, SE.CC, CW.NW, CC.CC, CW.SE, CC.NW, CC.SE, CE.NW, SW.CC, CE.SE, SW.NW, SE.SE, SW.SE";
-        string ExpectedWinner = "X";
+        readonly string TestData = "NW.CC, NC.CC, NW.NW, NE.CC, NW.SE, CE.CC, CW.CC, SE.CC, CW.NW, CC.CC, CW.SE, CC.NW, CC.SE, CE.NW, SW.CC, CE.SE, SW.NW, SE.SE, SW.SE";
+        readonly string ExpectedWinner = "X";
 
         [TestMethod]
         public void ExpectedResultTest()
