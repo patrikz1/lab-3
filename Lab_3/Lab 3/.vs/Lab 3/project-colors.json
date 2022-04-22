@@ -15,7 +15,17 @@
       "ProjectGuid": "9d4f4c85-e55b-48b8-8c80-16f9d87ea7eb",
       "DisplayName": "TestClass",
       "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "d86b2a4e-dc37-429c-8ba2-a2ce90e834b8": {
+      "ProjectGuid": "d86b2a4e-dc37-429c-8ba2-a2ce90e834b8",
+      "DisplayName": "AutomatedTestClass",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }
