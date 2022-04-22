@@ -47,7 +47,7 @@
                     bool containsBigBoard = item.BigBoard!.Equals(LastItem.BigBoard);
                     bool containsSmallSquare = item.SmallSquare!.Equals(LastItem.SmallSquare);
 
-                    if (containsBigBoard && containsSmallSquare) // || (or) board already complete (when i have done the result)---  WinnerListSmallBoard.Any(k => k.BigBoard!.Contains(CurrentItem.BigBoard))
+                    if (containsBigBoard && containsSmallSquare)
                     {
                         selectedItemsByPlayer.Remove(LastItem);
                     }
@@ -59,7 +59,6 @@
             }
 
         }
-
 
         public void OutputWinningLargeSquares(List<dynamic> WinnerListBigBoard)
         {
