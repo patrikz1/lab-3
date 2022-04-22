@@ -48,7 +48,7 @@ namespace Lab_3
                         }
                         catch (Exception)
                         {
-                            Console.WriteLine("\"" + move + "\"" + " was not valid due to incorrect format, that board was already won or was a duplicate move");
+                            Console.WriteLine("\"" + move + "\"" + " was not valid due to incorrect format, that board was already won or it was a duplicate move");
                         }
 
                     }
