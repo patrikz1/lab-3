@@ -9,7 +9,7 @@
         public Result(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
             CheckWinSmallBoards(SelectedItemsByPlayer);
-            //CheckNotValid(SelectedItemsByPlayer, WinnerListSmallBoard);
+            //CheckNotValid(SelectedItemsByPlayer, WinnerListSmallBoard);   <-- här lr över? 
 
             CheckWinBigBoards(WinnerListSmallBoard, WinnerListBigBoard);
 
@@ -22,7 +22,7 @@
             CheckWinVerticalSmallBoard(SelectedItemsByPlayer, WinnerListSmallBoard);
 
         }
-        public void CheckWinBigBoards(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard /*List<dynamic> WinnerListBigBoard*/)
+        public void CheckWinBigBoards(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
             CheckWinDiagonalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);
             CheckWinHorizontalBigBoard(WinnerListSmallBoard, WinnerListBigBoard);

@@ -10,11 +10,11 @@ namespace TestBoards
         string ExpectedWinner = "X";
 
         [TestMethod]
-        public void Correct_Player_Win()
-        {            
+        public void ExpectedResultTest()
+        {
             var makemoves = new Game(new GameSetup().PopulateBoards(), new GameSetup().PopulatePlayers(), TestData).MakeMoves(new GameSetup().PopulatePlayers(), new GameSetup().PopulateBoards(), TestData);
             var result = new Result(makemoves);
             Assert.AreEqual(ExpectedWinner, result.WinnerPlayer);
-        }       
+        }
     }
 }
