@@ -9,10 +9,8 @@
         public Result(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
             CheckWinSmallBoards(SelectedItemsByPlayer);
-            //CheckNotValid(SelectedItemsByPlayer, WinnerListSmallBoard);   <-- här lr över? 
-
+            CheckNotValid(SelectedItemsByPlayer, WinnerListSmallBoard);
             CheckWinBigBoards(WinnerListSmallBoard, WinnerListBigBoard);
-
         }
 
         public void CheckWinSmallBoards(List<BoardWithPlayer> SelectedItemsByPlayer)
@@ -35,27 +33,36 @@
             OutputWinningLargeSquares(WinnerListBigBoard);
             OutputWinningSmallSquares(WinnerListSmallBoard, WinnerPlayer);
             OutputWinningValues(WinnerListSmallBoard, WinnerPlayer);
+
+            System.Environment.Exit(0);
         }
         public void CheckNotValid(List<BoardWithPlayer> selectedItemsByPlayer, List<BoardWithPlayer> WinnerListSmallBoard)
         {
-            BoardWithPlayer CurrentItem = selectedItemsByPlayer.Last();
+            BoardWithPlayer LastItem = selectedItemsByPlayer.Last();
+            //bool AlreadyWonSquare = WinnerListSmallBoard.Any(i => i.BigBoard!.Contains(LastItem.BigBoard!));
+
 
             foreach (var item in selectedItemsByPlayer)
             {
-                if (item != CurrentItem)
+                if (item != LastItem)
                 {
-                    bool containsBigBoard = item.BigBoard!.Equals(CurrentItem.BigBoard);
-                    bool containsSmallSquare = item.SmallSquare!.Equals(CurrentItem.SmallSquare);
+                    bool containsBigBoard = item.BigBoard!.Equals(LastItem.BigBoard);
+                    bool containsSmallSquare = item.SmallSquare!.Equals(LastItem.SmallSquare);
 
                     if (containsBigBoard && containsSmallSquare) // || (or) board already complete (when i have done the result)---  WinnerListSmallBoard.Any(k => k.BigBoard!.Contains(CurrentItem.BigBoard))
                     {
-                        selectedItemsByPlayer.Remove(CurrentItem);
+                        selectedItemsByPlayer.Remove(LastItem);
                     }
                 }
+                if(!WinnerListSmallBoard.Contains(LastItem) && WinnerListSmallBoard.Any(i => i.BigBoard!.Contains(LastItem.BigBoard!)))
+                {
+                    selectedItemsByPlayer.Remove(LastItem);
+                }
             }
+
         }
 
-      
+
         public void OutputWinningLargeSquares(List<dynamic> WinnerListBigBoard)
         {
             Console.WriteLine("\nResults:");
@@ -124,6 +131,8 @@
         public void CheckWinHorizontalBigBoard(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard)
         {
             var SelectWonBoardAndPlayer = WinnerListSmallBoard.GroupBy(x => new { x.BigBoard, x.Player }).Select(i => new { i.Key.BigBoard, i.Key.Player });
+
+
             foreach (var groups in SelectWonBoardAndPlayer.GroupBy(x => x.Player))
             {
                 foreach (var item in groups)
