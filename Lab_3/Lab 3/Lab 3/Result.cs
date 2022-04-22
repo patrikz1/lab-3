@@ -5,6 +5,7 @@
 
         List<BoardWithPlayer> WinnerListSmallBoard = new List<BoardWithPlayer>();
         List<dynamic> WinnerListBigBoard = new List<dynamic>();
+        public string? WinnerPlayer { get; set; }
         public Result(List<BoardWithPlayer> SelectedItemsByPlayer)
         {
             CheckWinSmallBoards(SelectedItemsByPlayer);
@@ -30,6 +31,7 @@
         }
         public void OutputResult(List<BoardWithPlayer> WinnerListSmallBoard, List<dynamic> WinnerListBigBoard, string WinnerPlayer)
         {
+            this.WinnerPlayer = WinnerPlayer;
             OutputWinningLargeSquares(WinnerListBigBoard);
             OutputWinningSmallSquares(WinnerListSmallBoard, WinnerPlayer);
             OutputWinningValues(WinnerListSmallBoard, WinnerPlayer);
@@ -212,23 +214,5 @@
                 }
             }
         }
-
-
-
-        public Result()
-        {
-        }
-
-        public object CheckWinBigBoards(object winnerList)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object CheckWinSmallBoards(object winnerList)
-        {
-            throw new NotImplementedException();
-        }
-
-
     }
 }

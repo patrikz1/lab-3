@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_3
 {
-    internal class Game
+    public class Game
     {
         public Game(List<Board> BoardList, List<Players> PlayerList, string PlayerInput)
         {

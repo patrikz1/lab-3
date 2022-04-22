@@ -6,35 +6,14 @@ namespace TestBoards
     [TestClass]
     public class UnitTest1
     {
-        private readonly Result _output;
-
-        public UnitTest1()
-        {
-            _output = new Result();
-        }
-
+        string TestData = "NW.CC, NC.CC, NW.NW, NE.CC, NW.SE, CE.CC, CW.CC, SE.CC, CW.NW, CC.CC, CW.SE, CC.NW, CC.SE, CE.NW, SW.CC, CE.SE, SW.NW, SE.SE, SW.SE";
+        string ExpectedWinner = "X";
 
         [TestMethod]
-        public void check1(object WinnerListBigBoard)
+        public void Correct_Player_Win()
         {
-            var result = _output.CheckWinBigBoards(WinnerListBigBoard);
-
-            Assert.IsTrue((bool)result);
-        }
-
-        //är inte helt hundra på denna, men en new Result finns.
-        //I metoden tar man fram CheckWin...Board med Winnerlist,som jag antar är listan med
-        //spelade squares vinst  rmoves, som input och sen ser man med Assert.IsTrue om det stämmer
-        //i guess det är nästan rätt pls dont flame me :)
-
-        public void check2(object WinnerListSmallBoard)
-        {
-            var result = _output.CheckWinSmallBoards(WinnerListSmallBoard);
-
-            Assert.IsTrue((bool)result);
-        }
-
-        
-
+            var game = new Game(new GameSetup().PopulateBoards(), new GameSetup().PopulatePlayers(), TestData);
+            Assert.AreEqual(ExpectedWinner, new Result().WinnerPlayer);
+        }       
     }
 }
